@@ -19,16 +19,16 @@ module.exports.run = async function({
 }) {
   const input = args.join(' ');
   if (!input) {
-    api.sendMessage(`Please provide a question or statement after 'hercai'. For example: 'hercai What is the capital of France?'`, event.threadID, event.messageID);
+    api.sendMessage(`Please provide a question or statement after “hercai”`, event.threadID, event.messageID);
     return;
   }
-  api.sendMessage(`🔍 "${input}"`, event.threadID, event.messageID);
+  api.sendMessage(`🔍 | “${input}”`, event.threadID, event.messageID);
   try {
     const response = await herc.question({
       model: "v3",
       content: input
     });
-    api.sendMessage(response.reply, event.threadID, event.messageID);
+    api.sendMessage(response.reply + '\n\nThis Automated Bot website was created by vixeenn, kindly dm if you have any questions.\n› https://facebook.com/xenvrnslol', event.threadID, event.messageID);
   } catch (error) {
     api.sendMessage('An error occurred while processing your request.', event.threadID, event.messageID);
   }
